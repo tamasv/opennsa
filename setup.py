@@ -68,6 +68,8 @@ setup(name='opennsa',
                 'opennsa/protocols/shared',
                 'opennsa/shared',
                 'opennsa/topology',
+                'opennsa/ext',
+                'opennsa/ext/iso8601'
                ],
 
       cmdclass = cmdclasses,
