@@ -59,11 +59,11 @@ def castDatetime(value, cur):
 
 # setup
 
-def setupDatabase(database, user, password=None):
+def setupDatabase(database, user, password=None, host=None, port=None):
 
     # hack on, use psycopg2 connection to register postgres label -> nsa label adaptation
     import psycopg2
-    conn = psycopg2.connect(user=user, password=password, database=database)
+    conn = psycopg2.connect(user=user, password=password, database=database, host=host, port=port)
     cur = conn.cursor()
     register_composite('label', cur, globally=True, factory=LabelComposite)
     register_composite('security_attribute', cur, globally=True, factory=SecuritAttributeComposite)
@@ -76,7 +76,7 @@ def setupDatabase(database, user, password=None):
 
     conn.close()
 
-    Registry.DBPOOL = adbapi.ConnectionPool('psycopg2', user=user, password=password, database=database)
+    Registry.DBPOOL = adbapi.ConnectionPool('psycopg2', user=user, password=password, database=database, host=host, port=port)
 
 
 

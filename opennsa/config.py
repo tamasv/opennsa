@@ -49,7 +49,8 @@ PLUGIN           = 'plugin'
 DATABASE                = 'database'    # mandatory
 DATABASE_USER           = 'dbuser'      # mandatory
 DATABASE_PASSWORD       = 'dbpassword'  # can be none (os auth)
-
+DATABASE_HOST           = 'dbhost'      # can be none (socket)
+DATABASE_PORT           = 'dbport'      # can be none (socket)
 # tls
 KEY                     = 'key'         # mandatory, if tls is set
 CERTIFICATE             = 'certificate' # mandatory, if tls is set
@@ -218,6 +219,16 @@ def readVerifyConfig(cfg):
         vc[DATABASE_PASSWORD] = cfg.get(BLOCK_SERVICE, DATABASE_PASSWORD)
     except ConfigParser.NoOptionError:
         vc[DATABASE_PASSWORD] = None
+    
+    try:
+        vc[DATABASE_HOST] = cfg.get(BLOCK_SERVICE, DATABASE_HOST)
+    except ConfigParser.NoOptionError:
+        vc[DATABASE_HOST] = None
+    
+    try:
+        vc[DATABASE_PORT] = cfg.get(BLOCK_SERVICE, DATABASE_PORT)
+    except ConfigParser.NoOptionError:
+        vc[DATABASE_PORT] = None
 
     # we always extract certdir and verify as we need that for performing https requests
     try:

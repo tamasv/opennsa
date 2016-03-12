@@ -18,7 +18,6 @@ from opennsa.discovery import service as discoveryservice, fetcher
 from opennsa.protocols import nsi2
 
 
-
 def setupBackend(backend_cfg, network_name, nrm_ports, parent_requester):
 
     bc = backend_cfg.copy()
@@ -140,7 +139,8 @@ class OpenNSAService(twistedservice.MultiService):
             vc[config.HOST] = socket.getfqdn()
 
         # database
-        database.setupDatabase(vc[config.DATABASE], vc[config.DATABASE_USER], vc[config.DATABASE_PASSWORD])
+        database.setupDatabase(vc[config.DATABASE], vc[config.DATABASE_USER], vc[config.DATABASE_PASSWORD], vc[config.DATABASE_HOST], vc[config.DATABASE_PORT])
+
 
         service_endpoints = []
 
